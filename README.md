@@ -3,6 +3,7 @@ Projet-R
 
 	- Le dossier "web" contient le rapport du projet
 	- Le dossier "projet" contient le projet en R
+	- Le fichier "Gun Violance Data" contient les données utiles pour le projet
 
 Rappel des Consignes :
 
