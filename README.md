@@ -3,61 +3,61 @@ Projet-R
 
 	- Le dossier "web" contient le rapport du projet
 	- Le dossier "projet" contient le projet en R
-	- Le fichier "Gun Violance Data" contient les données utiles pour le projet
+	- Le fichier "ressources/Gun Violance Data" contient les donnï¿½es utiles pour le projet
 
 Rappel des Consignes :
 
 1 Le projet
 
-Le projet de cette annee voudrais être représentatif d’un cas d’application réelle et consistera donc de trois
+Le projet de cette annee voudrais ï¿½tre reprï¿½sentatif dï¿½un cas dï¿½application rï¿½elle et consistera donc de trois
 parties :
 
 	(C) collecte des donnees et des informations;
-	(E) etude et mise en œuvre des test statistiques aptes à vérifier les informations collectées;
-	(R) rapport sur le cas d’etude et discussion des résultats obtenus.
+	(E) etude et mise en ï¿½uvre des test statistiques aptes ï¿½ vï¿½rifier les informations collectï¿½es;
+	(R) rapport sur le cas dï¿½etude et discussion des rï¿½sultats obtenus.
 
-Chacune des ces parties sera detaillée dans la suite de ce document.
+Chacune des ces parties sera detaillï¿½e dans la suite de ce document.
 
 1.1 Collecte
 
-Pour un certain nombre de sujets les donnees sont disponibles au t ´ el´ echargement sur Internet mais il faudra
-parfois les nettoyer des donnees inutiles ou v ´ erifier la consistance des valeurs. Pour cela il faudra donc écrire de
+Pour un certain nombre de sujets les donnees sont disponibles au t ï¿½ elï¿½ echargement sur Internet mais il faudra
+parfois les nettoyer des donnees inutiles ou v ï¿½ erifier la consistance des valeurs. Pour cela il faudra donc ï¿½crire de
 petits scripts de pre-traitement.
 
 1.2 Etude
 
-Chaque sujet prevoit de v ´ erifier un certain nombre d’hypoth ´ eses en suivant les exercices-mod ` eles que nous
+Chaque sujet prevoit de v ï¿½ erifier un certain nombre dï¿½hypoth ï¿½ eses en suivant les exercices-mod ` eles que nous
 avons vu en cours.
-Les bases de donnees constituées au point précédent seront utilisées à la fois pour calculer les parametres statistiques 
-utiles à l’étude et aussi pour extraire l’échantillon sur lequel appliquer les tests d’hypotheses.
+Les bases de donnees constituï¿½es au point prï¿½cï¿½dent seront utilisï¿½es ï¿½ la fois pour calculer les parametres statistiques 
+utiles ï¿½ lï¿½ï¿½tude et aussi pour extraire lï¿½ï¿½chantillon sur lequel appliquer les tests dï¿½hypotheses.
 
 1.3 Rapport
 
-La derniere partie du projet prèvoit la production d’un petit rapport sous forme de page web (html) contenant :
-	— un descriptif du sujet et de ses finalites;
-	— un descriptif des donnees utilisées;
-	— la methodologie suivie pour répondre aux questions;
-	— les resultats obtenus et leur visualisation graphique autant que possible;
-	— une courte presentation des membres du groupe et de leur rôle dans le projet.
+La derniere partie du projet prï¿½voit la production dï¿½un petit rapport sous forme de page web (html) contenant :
+	ï¿½ un descriptif du sujet et de ses finalites;
+	ï¿½ un descriptif des donnees utilisï¿½es;
+	ï¿½ la methodologie suivie pour rï¿½pondre aux questions;
+	ï¿½ les resultats obtenus et leur visualisation graphique autant que possible;
+	ï¿½ une courte presentation des membres du groupe et de leur rï¿½le dans le projet.
 
 Sujet :
 
 Gun violence data
 
-Il s’agira de mener une serie de statistiques sur l’archive du même intitulé qui se trouve ici. Cet archive (au
-format CSV) contient des entree relative aux faits divers causés par des armes à feu qui ont eu lieu aux Etas Unis
-entre le 1er janvier 2013 et le 31 mars 2018. Il s’agira de montrer l’évolution d’un certain nombre de variables
-pendant la periode concernée, d’en calculer la moyenne et l’écart type (quand possible). Les variable qui nous
+Il sï¿½agira de mener une serie de statistiques sur lï¿½archive du mï¿½me intitulï¿½ qui se trouve ici. Cet archive (au
+format CSV) contient des entree relative aux faits divers causï¿½s par des armes ï¿½ feu qui ont eu lieu aux Etas Unis
+entre le 1er janvier 2013 et le 31 mars 2018. Il sï¿½agira de montrer lï¿½ï¿½volution dï¿½un certain nombre de variables
+pendant la periode concernï¿½e, dï¿½en calculer la moyenne et lï¿½ï¿½cart type (quand possible). Les variable qui nous
 interessent sont :
 
-— nombre de blesses;
-— nombre de morts;
-— nombre de malfaiteurs;
-— age des malfaiteurs;
-— etat dans lequel le fait divers a eu lieu.
+ï¿½ nombre de blesses;
+ï¿½ nombre de morts;
+ï¿½ nombre de malfaiteurs;
+ï¿½ age des malfaiteurs;
+ï¿½ etat dans lequel le fait divers a eu lieu.
 
-Il s’agira enfin de voir si vous trouvez des correlations entre ces variables et s’il y aussi des corrélations avec la
-periode de l’année. 
+Il sï¿½agira enfin de voir si vous trouvez des correlations entre ces variables et sï¿½il y aussi des corrï¿½lations avec la
+periode de lï¿½annï¿½e. 
 
 
 
