@@ -8,22 +8,18 @@ print("Déclarations de fonctions")
 
 filterInterestingData <- function(allData) {
   print("filterInterestingData")
-  filteredData <- matrix(ncol=5)
-  colnames(filteredData) <- c("date", "nombre_morts", "nombre_blesses", "etat", "accident")
+  filteredData <- matrix(ncol=4)
+  colnames(filteredData) <- c("date", "nombre_morts", "nombre_blesses", "etat")
   for(row in 0:nrow(allData)){
     if(
-        is.null(allData[row, "date"]) | length(allData[row, "date"])==0 |
-       is.null(allData[row, "latitude"]) | length(allData[row, "latitude"])==0 |
+       is.null(allData[row, "date"]) | length(allData[row, "date"])==0 |
        is.null(allData[row, "n_killed"]) | length(allData[row, "n_killed"])==0 |
        is.null(allData[row, "n_injured"]) | length(allData[row, "n_injured"])==0 |
        is.null(allData[row, "state"]) | length(allData[row, "state"])==0
-       ) 
+       ){ 
       next
-    
+    }
       date <- allData[row, "date"] 
-      if( allData[row, "latitude"] == "accidental")
-        accident<- TRUE
-      else accident <- FALSE
       #on saute les rows incohérents 
       nombre_morts <- allData[row, "n_killed"]
       nombre_blesses <- allData[row, "n_injured"]
@@ -33,7 +29,8 @@ filterInterestingData <- function(allData) {
       #age_moyen_des_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
       aRow <- tryCatch({
         dateAsDate <- as.Date(date, "%Y-%m-%d", "%Y/%m/%d",FALSE)
-        c(dateAsDate, nombre_morts, nombre_blesses, etat, accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
+        if(is.na(dateAsDate)) next
+        c(paste("",dateAsDate), nombre_morts, nombre_blesses, etat) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
       }, warning = function(w) {
         return(NULL);
       }, error = function(e) {
@@ -44,8 +41,9 @@ filterInterestingData <- function(allData) {
         next
       }else print("row bien formé")
       
-    print(paste("date :",date,", morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat, ", accident: ", accident))
+    print(paste("date :",date,", morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat))
     #print(paste("Devrait etre le meme qu'au dessus : date :",aRow[1]))
+   
     rbind(filteredData,aRow, NULL) -> filteredData 
    
     if(row>500) return(filteredData) # faster for testing
@@ -54,6 +52,11 @@ filterInterestingData <- function(allData) {
   print(class(filteredData))
   print("***")
   return(filteredData)
+}
+
+get_years <- function(date) {
+  posixDate <- as.POSIXct(date,format="%Y/%m/%d",tz="America/Chicago")
+  return(year(as.Date(posixDate)))
 }
 # POINT D'ENTREE
 
@@ -69,7 +72,15 @@ colnames(allData) <- headers
 #View(allData)
 print("On recupere les donnes qui nous interessent depuis le dataset")
 filteredDataRes <- filterInterestingData(allData)
+
+lapply(filteredDataRes[0], get_years)
+lapply(filteredDataRes[1], as.numeric )
+lapply(filteredDataRes[2], as.numeric )
+lapply(filteredDataRes[3], as.character)
+
 View(filteredDataRes)
+
+
 print(summary(filteredDataRes))
 print("On établit des corrélations sur ces données")
 
