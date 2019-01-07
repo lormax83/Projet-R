@@ -23,22 +23,22 @@ filterInterestingData <- function(allData) {
       #nombre_de_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
       #age_moyen_des_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
       
-      aRow <- c(paste("",date), paste("",nombre_morts), paste("",nombre_blesses), paste("",etat), accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
+      aRow <- c(as.Date(date), as.integer(nombre_morts), as.integer(nombre_blesses), paste(etat), accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
       
       print(paste("date :",date,", morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat, ", accident: ", accident))
       #print(paste("Devrait etre le meme qu'au dessus : date :",aRow[1]))
-      if (length(date)>0 &
-         length(nombre_morts)>0 & is.numeric(nombre_morts) &
-         length(nombre_blesses)>0 & is.numeric(nombre_blesses) &
-         length(etat)>0
-          )
-      {
+      #if (length(date)>0 &
+      #   length(nombre_morts)>0 & is.numeric(nombre_morts) &
+      #   length(nombre_blesses)>0 & is.numeric(nombre_blesses) &
+      #   length(etat)>0
+      #    )
+      if(TRUE){
         rbind(filteredData,aRow, NULL) -> filteredData 
       }else{
         print("on evite un row incoherent")
         next;
       }
-    if(row>100) return(filteredData) # faster for testing
+    if(row>500) return(filteredData) # faster for testing
   }
   
   return(filteredData)
@@ -58,7 +58,7 @@ colnames(allData) <- headers
 print("On recupere les donnes qui nous interessent depuis le dataset")
 filteredDataRes <- filterInterestingData(allData)
 View(filteredDataRes)
-
+print(summary(filteredDataRes))
 print("On établit des corrélations sur ces données")
 
 print("Pour cela on fait des statistiques sur les échantillons obtenus :")
