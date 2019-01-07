@@ -89,7 +89,7 @@ mortList.sd <- sd( mortList, na.rm=TRUE )
 print(mortList.sd)
 mortList.norm <- pnorm( mortList, m=mortList.mean, sd=mortList.sd )
 print(mortList.norm)
-mortList.density <- density(mortList.norm)
+mortList.density <- density(mortList.norm, na.rm=TRUE)
 plot(mortList.density, main="Fonction densité")
 
 
