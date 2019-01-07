@@ -56,21 +56,13 @@ filterInterestingData <- function(allData) {
    
     rbind(filteredData,aRow, NULL) -> filteredData 
    
-    if(row>500) return(filteredData) # faster for testing
   }
-  datelist <- lapply(X = filteredData[,"date"], FUN = get_years)
-  print(class(datelist))
-  nombre_mortslist <- lapply(X = filteredData[,"nombre_morts"], FUN = as.numeric )
-  print(class(nombre_mortslist))
-  nombre_blesseslist <- lapply(X = filteredData[,"nombre_blesses"], FUN = as.numeric )
-  print(class(nombre_blesseslist))
-  etatlist <- lapply(X = filteredData[,"etat"], FUN = as.character)
-  print(class(etatlist))
   
-  filteredData[,"date"] <- unlist(datelist, use.names = FALSE)
-  filteredData[,"nombre_morts"] <- unlist(nombre_mortslist, use.names = FALSE)
-  filteredData[,"nombre_blesses"] <- unlist(nombre_blesseslist, use.names = FALSE)
-  filteredData[,"etat"] <- unlist(etatlist, use.names = FALSE)
+  print(filteredData[,1])
+  print(filteredData[,2])
+  print(filteredData[,3])
+  print(filteredData[,4])
+  
   
   return(filteredData)
 }
