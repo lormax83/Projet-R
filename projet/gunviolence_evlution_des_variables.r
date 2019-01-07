@@ -22,22 +22,22 @@ filterInterestingData <- function(allData) {
       
       #nombre_de_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
       #age_moyen_des_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
+      aRow <- tryCatch({
+        c(as.Date(date, format="%Y-%m-%d"), as.integer(nombre_morts), as.integer(nombre_blesses), paste(etat), accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
+      }, warning = function(w) {
+        return(NULL);
+      }, error = function(e) {
+        return(NULL);
+      })
+      if(is.null(aRow)){
+        print("row mal formé")
+        next
+      } 
       
-      aRow <- c(as.Date(date), as.integer(nombre_morts), as.integer(nombre_blesses), paste(etat), accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
-      
-      print(paste("date :",date,", morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat, ", accident: ", accident))
-      #print(paste("Devrait etre le meme qu'au dessus : date :",aRow[1]))
-      #if (length(date)>0 &
-      #   length(nombre_morts)>0 & is.numeric(nombre_morts) &
-      #   length(nombre_blesses)>0 & is.numeric(nombre_blesses) &
-      #   length(etat)>0
-      #    )
-      if(TRUE){
-        rbind(filteredData,aRow, NULL) -> filteredData 
-      }else{
-        print("on evite un row incoherent")
-        next;
-      }
+    print(paste("date :",date,", morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat, ", accident: ", accident))
+    #print(paste("Devrait etre le meme qu'au dessus : date :",aRow[1]))
+    rbind(filteredData,aRow, NULL) -> filteredData 
+   
     if(row>500) return(filteredData) # faster for testing
   }
   
