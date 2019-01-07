@@ -6,11 +6,19 @@ rm(list = ls())
 
 print("Déclarations de fonctions")
 
+get_years <- function(date) {
+  temp<-substr(date,1,4)
+  if(is.null(temp))
+  if(is.numeric(temp)&as.numeric(temp)>1900)
+    return(temp)
+  else return(NULL)
+}
+
 filterInterestingData <- function(allData) {
   print("filterInterestingData")
   filteredData <- matrix(ncol=4)
   colnames(filteredData) <- c("date", "nombre_morts", "nombre_blesses", "etat")
-  for(row in 0:nrow(allData)){
+  for(row in 1:nrow(allData)){
     if(
        is.null(allData[row, "date"]) | length(allData[row, "date"])==0 |
        is.null(allData[row, "n_killed"]) | length(allData[row, "n_killed"])==0 |
@@ -54,10 +62,6 @@ filterInterestingData <- function(allData) {
   return(filteredData)
 }
 
-get_years <- function(date) {
-  posixDate <- as.POSIXct(date,format="%Y/%m/%d",tz="America/Chicago")
-  return(year(as.Date(posixDate)))
-}
 # POINT D'ENTREE
 
 #on se place dans l'arboresence de fichier a l'endroit ou est le projet
@@ -66,17 +70,16 @@ setwd("/home/asus/Desktop/work/M1_MATHS/")
 print("on recupere le dataset avec les entetes")
 
 headers <- c("incident_id","date","state","city_or_county","address","n_killed","n_injured","incident_url","source_url","incident_url_fields_missing","congressional_district","gun_stolen","gun_type","incident_characteristics","latitude","location_description","longitude","n_guns_involved","notes","participant_age","participant_age_group","participant_gender","participant_name","participant_relationship","participant_status","participant_type","sources","state_house_district","state_senate_district")
-allData <- read.csv("gun-violence-data_01-2013_03-2018.csv", sep = ",", header=FALSE, skip = 1, skipNul = TRUE, fill = TRUE, quote = "", strip.white = TRUE )
+allData <- fread("gun-violence-data_01-2013_03-2018.csv", sep = ",", header=TRUE, nrows = 500)
+allData <- as.data.frame(allData)
 colnames(allData) <- headers
 
 #View(allData)
-print("On recupere les donnes qui nous interessent depuis le dataset")
 filteredDataRes <- filterInterestingData(allData)
-
-lapply(filteredDataRes[0], get_years)
-lapply(filteredDataRes[1], as.numeric )
-lapply(filteredDataRes[2], as.numeric )
-lapply(filteredDataRes[3], as.character)
+filteredDataRes[["date"]]<-lapply(filteredDataRes[["date"]], get_years)
+filteredDataRes[["nombre_morts"]]<-lapply(filteredDataRes[["nombre_morts"]], as.numeric )
+filteredDataRes[["nombre_blesses"]]<-lapply(filteredDataRes[["nombre_blesses"]], as.numeric )
+filteredDataRes[["etat"]]<-lapply(filteredDataRes[["etat"]], as.character)
 
 View(filteredDataRes)
 
