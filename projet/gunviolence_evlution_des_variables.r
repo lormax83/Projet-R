@@ -7,26 +7,40 @@ rm(list = ls())
 print("Déclarations de fonctions")
 
 filterInterestingData <- function(allData) {
+  print("filterInterestingData")
   filteredData <- matrix(ncol=5)
-  colnames(filteredData) <- c("nombre_morts", "nombre_blesses", "nombre_de_malfaiteurs", "age_moyen_des_malfaiteurs", "etat")
+  colnames(filteredData) <- c("date", "nombre_morts", "nombre_blesses", "etat", "accident")
   for(row in 1:nrow(allData)){
-    if(length(allData[row, "date"])>0){
-
-      #on a un row a priori renseigné
+      date <- allData[row, "date"]
+      if(allData[row, "latitude"] == "accidental")
+      accident<- TRUE
+      else accident <- FALSE
+      #on saute les rows incohérents 
       nombre_morts <- allData[row, "n_killed"]
       nombre_blesses <- allData[row, "n_injured"]
       etat <- allData[row, "state"]
-      print(paste("morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat, "\n"))
-      nombre_de_malfaiteurs <- "todo"
-      age_moyen_des_malfaiteurs <- "todo"
       
-      aRow <- c(nombre_morts, nombre_blesses, nombre_de_malfaiteurs, age_moyen_des_malfaiteurs, etat)
-      rbind(filteredData,aRow, NULL) -> filteredData
+      #nombre_de_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
+      #age_moyen_des_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
       
+      aRow <- c(paste("",date), paste("",nombre_morts), paste("",nombre_blesses), paste("",etat), accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
       
-    }
-    if(row>3) return(filteredData) # for testing
+      print(paste("date :",date,", morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat, ", accident: ", accident))
+      #print(paste("Devrait etre le meme qu'au dessus : date :",aRow[1]))
+      if (length(date)>0 &
+         length(nombre_morts)>0 & is.numeric(nombre_morts) &
+         length(nombre_blesses)>0 & is.numeric(nombre_blesses) &
+         length(etat)>0
+          )
+      {
+        rbind(filteredData,aRow, NULL) -> filteredData 
+      }else{
+        print("on evite un row incoherent")
+        next;
+      }
+    if(row>100) return(filteredData) # faster for testing
   }
+  
   return(filteredData)
 }
 # POINT D'ENTREE
@@ -42,7 +56,13 @@ colnames(allData) <- headers
 
 #View(allData)
 print("On recupere les donnes qui nous interessent depuis le dataset")
-
 filteredDataRes <- filterInterestingData(allData)
 View(filteredDataRes)
+
+print("On établit des corrélations sur ces données")
+
+print("Pour cela on fait des statistiques sur les échantillons obtenus :")
+
+print("On étudie les covariances")
+
 
