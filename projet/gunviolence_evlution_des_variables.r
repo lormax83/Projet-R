@@ -10,10 +10,19 @@ filterInterestingData <- function(allData) {
   print("filterInterestingData")
   filteredData <- matrix(ncol=5)
   colnames(filteredData) <- c("date", "nombre_morts", "nombre_blesses", "etat", "accident")
-  for(row in 1:nrow(allData)){
-      date <- allData[row, "date"]
-      if(allData[row, "latitude"] == "accidental")
-      accident<- TRUE
+  for(row in 0:nrow(allData)){
+    if(
+        is.null(allData[row, "date"]) | length(allData[row, "date"])==0 |
+       is.null(allData[row, "latitude"]) | length(allData[row, "latitude"])==0 |
+       is.null(allData[row, "n_killed"]) | length(allData[row, "n_killed"])==0 |
+       is.null(allData[row, "n_injured"]) | length(allData[row, "n_injured"])==0 |
+       is.null(allData[row, "state"]) | length(allData[row, "state"])==0
+       ) 
+      next
+    
+      date <- allData[row, "date"] 
+      if( allData[row, "latitude"] == "accidental")
+        accident<- TRUE
       else accident <- FALSE
       #on saute les rows incohérents 
       nombre_morts <- allData[row, "n_killed"]
@@ -23,7 +32,8 @@ filterInterestingData <- function(allData) {
       #nombre_de_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
       #age_moyen_des_malfaiteurs <- "NULL" # On ne peut pas obtenir cette donnée car la collection est trop hétérogène et parfois incohérente
       aRow <- tryCatch({
-        c(as.Date(date, format="%Y-%m-%d"), as.integer(nombre_morts), as.integer(nombre_blesses), paste(etat), accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
+        dateAsDate <- as.Date(date, "%Y-%m-%d", "%Y/%m/%d",FALSE)
+        c(dateAsDate, nombre_morts, nombre_blesses, etat, accident) # nombre_de_malfaiteurs, age_moyen_des_malfaiteurs retirés
       }, warning = function(w) {
         return(NULL);
       }, error = function(e) {
@@ -32,7 +42,7 @@ filterInterestingData <- function(allData) {
       if(is.null(aRow)){
         print("row mal formé")
         next
-      } 
+      }else print("row bien formé")
       
     print(paste("date :",date,", morts :", nombre_morts, ", blesses :", nombre_blesses, "etat :", etat, ", accident: ", accident))
     #print(paste("Devrait etre le meme qu'au dessus : date :",aRow[1]))
@@ -40,7 +50,9 @@ filterInterestingData <- function(allData) {
    
     if(row>500) return(filteredData) # faster for testing
   }
-  
+  print("***")
+  print(class(filteredData))
+  print("***")
   return(filteredData)
 }
 # POINT D'ENTREE
