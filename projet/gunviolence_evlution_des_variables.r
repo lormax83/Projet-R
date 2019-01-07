@@ -75,16 +75,12 @@ filteredDataRes <- filterInterestingData(allData)
 View(filteredDataRes)
 
 dateList <- filteredDataRes[,"date"]
-mortList <- filteredDataRes[,"nombre_morts"]
-blessesList <-filteredDataRes[,"nombre_blesses"]
+mortList <- as.numeric(filteredDataRes[,"nombre_morts"])
+blessesList <- as.numeric(filteredDataRes[,"nombre_blesses"])
 etatList <- filteredDataRes[, "etat"]
 
-mortParEtat <- matrix(nrow=min(length(mortList), length(etatList)), ncol = 2)
-mortParEtat[,0] <- mortList
-mortParEtat[,1] <- etatList
-
-print(summary(mortParEtat))
-
+barplot(mortList , col="orange",names.arg=etatList)
+barplot(blessesList , col="orange",names.arg=etatList)
 
 print("On établit des corrélations sur ces données")
 
