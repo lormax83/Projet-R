@@ -4,8 +4,13 @@ d <- read.csv("/Users/marc/Documents/gun-violence-data_01-2013_03-2018.csv")
 
 
 #import library
-library(maps)
+library(data.table)
+library(dplyr)
+library(tidyr)
 library(ggplot2)
+library(maps)
+library(knitr)
+
 
 #Diagramme baton
 shooting_2013 <- sum(substr(d$date,1,4) == "2013")
@@ -42,3 +47,21 @@ topdatearrange
 topdate <- d %>% group_by(substr(d$date,6,10)) %>% summarize(n = n())
 topdate
 barplot(topdate$n)
+
+#statistique sur le 4 juillet nombre de mort/blessé chaque année
+injur130704 <- sum(d %>% select(n_injured) %>% filter(d$date == "2013-07-04"))
+injur140704 <- sum(d %>% select(n_injured) %>% filter(d$date == "2014-07-04"))
+injur150704 <- sum(d %>% select(n_injured) %>% filter(d$date == "2015-07-04"))
+injur160704 <- sum(d %>% select(n_injured) %>% filter(d$date == "2016-07-04"))
+injur170704 <- sum(d %>% select(n_injured) %>% filter(d$date == "2017-07-04"))
+
+kil130704 <- sum (d %>% select(n_killed) %>% filter(d$date == "2013-07-04"))
+kil140704 <- sum(d %>% select(n_killed) %>% filter(d$date == "2014-07-04"))
+kil150704 <- sum(d %>% select(n_killed) %>% filter(d$date == "2015-07-04"))
+kil160704 <- sum(d %>% select(n_killed) %>% filter(d$date == "2016-07-04"))
+kil170704 <- sum(d %>% select(n_killed) %>% filter(d$date == "2017-07-04"))
+
+
+kilinjur0704 <- c(kil130704, injur130704,kil140704,injur140704, kil150704,injur150704, kil160704, injur160704,kil170704, injur170704)
+
+barplot(kilinjur0704,names.arg=c("kill13","injur13","kill14","injur14","kill15","injur15","kill16","injur16","kill17","injur17"))
