@@ -1,42 +1,136 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
+	<head>
+		<title>Gun Violance - Project R</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="landing">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="./css/stylesheet.css">
-    <title>Gun Violance Project R</title>
-</head>
-<body>
-    <h1>Projet R  - Gun Violance - CAVALLO KRATZ MOINEAU HERON</h1>
-    <p>Présentation du Projet R Master 1 MIAGE 2018/2019</p>
+			<header id="header" class="alt">
+				<h1><a href="index.html">Gun Violance - Project R</a></h1>
+				<a href="#nav">Menu</a>
+			</header>
 
-    <h2>Présentation de l'Equipe</h2>
-    <p>
-        - CAVALLO Romain: <br>
-        - KRATZ Marc: <br>
-        - MOINEAU Maxime: <br>
-        - HERON Maxime: Web + Project Management <br>
-    </p>
-    <h2>Présentation du Sujet</h2>
-    <p>
-        Les Armes aux Etats Unis sont légal à l'aide du Seconde Amandemement.<br>
-        « Une milice bien organisée étant nécessaire à la sécurité d'un État libre, le droit qu'a le peuple de détenir et de porter des armes ne sera pas transgressé. » "Constitution des États-Unis d’Amérique" <br>
-        Cependant, il faut un permis de port d'armes pour pouvoir avoir une arme il y a donc une certaine régulation.
-    </p>
-    <h2>Déscription des données utilisées</h2>
-    <p>
-        
-    </p>
-    <h2>Méthodologie de réponse</h2>
-    <p>
-        
-    </p>
-    <h2>Résultats Obtenus</h2>
-    <p>
-        
-    </p>
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="#header">Home</a></li>
+					<li><a href="#presentation">Présentation</a></li>
+					<li><a href="#data">Résultat Obtenu </a></li>
+				</ul>
+			</nav>
+
+			<section id="banner">
+				<i class="icon fa-bar-chart"></i>
+				<h2>Gun Violance</h2>
+				<p>Présentation du Projet R <br><br>Master 1 MIAGE 2018/2019 <br></p>
+					<h2>Présentation de l'Equipe</h2>
+					<p>
+						CAVALLO Romain: Developper<br>
+						KRATZ Marc: Data Analyst <br>
+						MOINEAU Maxime: Developper<br>
+						HERON Maxime: Web + Project Management <br><br><br>
+				</p>
+			</section>
+
+			<section id="presentation" class="wrapper style1">
+				<div class="inner">
+					<article class="feature left">
+						<span class="image"><img src="images/pic01.jpg" alt="" /></span>
+						<div class="content">
+							<h2>Présentation du Sujet</h2>
+							<p>
+								Les Armes aux Etats Unis sont légal à l'aide du Seconde Amandemement.<br>
+								« Une milice bien organisée étant nécessaire à la sécurité d'un État libre, le droit qu'a le peuple de détenir et de porter des armes ne sera pas transgressé. » "Constitution des États-Unis d’Amérique" <br>
+								Cependant, aux Etats Unis, il faut un permis de port d'armes pour pouvoir en avoir une, il y a donc une certaine régulation.<br>
+								Cela n'empèche pas aux Etats Unis d'avoir l'un des plus gros taux d'accident par arme à feu dans le monde.<br>
+								Le sujet étant très contreversé, la sphère politique esseaye d'éluder les questions autour de la violance lié aux armes.<br>
+								<br>
+								L'étude statistiques suivante permet de voir les différentes informations liée à celle-ci:<br>
+								<br>
+								- Le nombre de violance par années/mois<br>
+								- Le nombre de bléssés et de mort<br>
+								- La répartion géographique de celle-ci<br>
+								- L'âge moyens des personnes inculpées<br>
+						
+						
+							</p>
+						</div>
+					</article>
+					<article class="feature right">
+						<span class="image"><img src="images/pic02.jpg" alt="" /></span>
+						<div class="content">
+							<h2>Déscription des données utilisées</h2>
+							<p>
+								Nous avons regroupé plusieurs données pour pouvoir faire cette étude statistiques.
+								Elle ont étaient récupérées sur le site :<br>
+								<br>
+								<a href="https://www.kaggle.com/jameslko/gun-violence-data">Gun Violance Data</a><br>
+								<br>
+								Les données fréquantes utilisées sont les suivantes:<br>
+								- Numéros des incidents (permet de faire une recherche sur incident et de les retrouvé facilement)<br>
+								- Date de l'incidents (permet de récupérées le mois / années de l'incident )<br>
+								- L'Etat ou à eu lieu l'incident (permet de faire des statistiques par Etats mais aussi d'avoir une nuage de point sur une carte)<br>
+								- Nombre de morts / bléssés<br>
+								- L'âge (permettant de regroupé par tranche d'age les personne impliqué dans les incidents)<br>
+						
+							</p>
+						</div>
+					</article>
+					<article class="feature left">
+						<span class="image"><img src="images/pic03.jpg" alt="" /></span>
+						<div class="content">
+								<h2>Méthodologie de réponse</h2>
+								<p>
+									Nous sommes partis de certain postula de départ et de questions primaire.<br>
+									A partir de cela nous avons regroupé les données à utilisé pour répondre à ces questions.<br>
+									Nous avons téléchargé les données utiles sous le format CSV permettant l'utilisation de celle-ci directement dans l'application R.<br>
+									Nous avons parsé les données, puis regroupé pour permettre la crétion de graphiques statistiques.<br>
+									Enfin nous avons comparé les résultats attendu à ceux que nous avons eu.<br>
+							
+								</p>
+						</div>
+					</article>
+				</div>
+			</section>
 
 
-</body>
+		<!-- ICI RAJOUTEZ LES IMAGES 
+			+ METTRE DANS LE DOSSIER images/pic0n.jpg
+			SOUS FORME PIC04, PIC05 ETC... 
+			+ METTRE IMG SRC A LA PLACE DE HREF POUR CLICKER SUR L IMAGE
+		-->
+
+
+			<section id="data" class="wrapper special">
+				<div class="inner">
+					<header class="major narrow">
+							<h2>Résultats Obtenus</h2>
+						<p> Les résultats obtenu sont disposé sous forme de tableau avec les graphiques correspondant.<br></p>
+					</header>
+					<div class="image-grid">
+						<a href="images/pic03.jpg" class="image"><img src="images/pic03.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+						<a href="#" class="image"><img src="images/pic10.jpg" alt="" /></a>
+					</div>
+				</div>
+			</section>
+
+
+			<footer id="footer">
+				<div></div>
+			</footer>
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
